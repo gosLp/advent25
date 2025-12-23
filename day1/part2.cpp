@@ -17,16 +17,13 @@ int main() {
         char dir = line[0];
         int val = std::stoi(line.substr(1));
         
-        // Full rotations - each one crosses 0 exactly once
         int full = val / 100;
         int partial = val % 100;
         total += full;
         
-        // Calculate next position (before modulo)
         int delta = (dir == 'L') ? -partial : partial;
         int next_position = position + delta;
         
-        // Only count a crossing if we're not starting at 0
         if (position != 0) {
             if (dir == 'L' && next_position <= 0) {
                 total += 1;
@@ -35,7 +32,6 @@ int main() {
             }
         }
         
-        // Wrap position to 0-99 range
         position = ((next_position % 100) + 100) % 100;
     }
     
